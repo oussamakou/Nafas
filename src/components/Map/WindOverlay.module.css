@@ -1,0 +1,50 @@
+.windControl {
+    margin: 10px;
+    pointer-events: auto;
+}
+
+.windWidget {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 2px solid var(--color-accent);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-text);
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+}
+
+.windIcon {
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(56, 189, 248, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.windInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.value {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.speed {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}

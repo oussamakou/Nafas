@@ -1,0 +1,28 @@
+.windLine {
+    stroke-linecap: round;
+    animation-name: flow;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0;
+    /* Start invisible */
+}
+
+@keyframes flow {
+    0% {
+        stroke-dashoffset: 40;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.6;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+}

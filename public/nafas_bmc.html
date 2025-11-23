@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nafas - Championship Pitch Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0f1e;
+            --bg-card: #0f172a;
+            --accent: #38bdf8;
+            --accent-bright: #0ea5e9;
+            --accent-glow: rgba(56, 189, 248, 0.6);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(30, 41, 59, 0.8);
+            --glass-border: rgba(56, 189, 248, 0.2);
+            --red: #ef4444;
+            --green: #22c55e;
+            --yellow: #eab308;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            perspective: 1200px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.92) translateY(40px) rotateX(5deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            background: radial-gradient(ellipse at top, #1e293b 0%, var(--bg-dark) 60%);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateY(0) rotateX(0);
+            z-index: 10;
+        }
+
+        /* Animated Background */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 12s infinite ease-in-out;
+            opacity: 0.4;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent);
+            top: -150px;
+            left: -150px;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #9333ea;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -6s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-bright);
+            top: 50%;
+            left: 50%;
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px, 60px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-30px, -40px) scale(0.9);
+            }
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-weight: 800;
+            text-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 2px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px var(--accent-glow);
+            transition: all 0.3s;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 60px var(--accent-glow);
+        }
+
+        .logo-img {
+            height: 140px;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 30px var(--accent-glow));
+            animation: glow-pulse 3s infinite;
+        }
+
+        @keyframes glow-pulse {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 30px var(--accent-glow));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 50px var(--accent-glow));
+            }
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            width: 100%;
+            max-width: 1300px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        /* Cards */
+        .card {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.05) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 2px solid rgba(56, 189, 248, 0.15);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(56, 189, 248, 0.3);
+        }
+
+        .card:hover::before {
+            opacity: 0.1;
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            filter: drop-shadow(0 0 10px var(--accent-glow));
+        }
+
+        .card h3 {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Stats */
+        .big-stat {
+            font-size: 6rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 40px var(--accent-glow);
+            animation: stat-glow 2s infinite;
+        }
+
+        @keyframes stat-glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 40px var(--accent-glow);
+            }
+
+            50% {
+                text-shadow: 0 0 60px var(--accent-glow), 0 0 80px var(--accent-glow);
+            }
+        }
+
+        .metric-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* Screenshot Container */
+        .screenshot-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .screenshot-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 40px var(--accent-glow);
+            border: 2px solid var(--glass-border);
+            transition: all 0.4s;
+        }
+
+        .screenshot-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 60px var(--accent-glow);
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+            border: none;
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        .progress {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent) 0%, #9333ea 100%);
+            transition: width 0.4s;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            z-index: 100;
+        }
+
+        /* Special Slide Styles */
+        .quote-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 2px solid rgba(239, 68, 68, 0.4);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quote-text {
+            font-size: 3.5rem;
+            color: var(--red);
+            font-weight: 700;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .team-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .closing-tagline {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 2rem;
+            text-shadow: 0 0 40px var(--accent-glow);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress" id="progress" style="width: 0%"></div>
+    <div class="slide-number" id="slide-number">1 / 13</div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="slide-container">
+        <!-- Slide 1: Opening -->
+        <div class="slide active">
+            <img src="nafas_logo.png" alt="Nafas" class="logo-img">
+            <h1>NAFAS</h1>
+            <p
+                style="font-size: 2.5rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 3rem; font-weight: 700;">
+                Breathe the Truth</p>
+            <p style="font-size: 1.8rem;">This is Gabes. 150,000 people.</p>
+            <p style="font-size: 1.8rem; margin-top: 1.5rem;">50 years of toxic air from industrial pollution.</p>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide">
+            <div class="grid-2">
+                <div>
+                    <h2 style="text-align: left;">The Silent Killer</h2>
+                    <p style="text-align: left; margin-bottom: 2.5rem; font-size: 1.7rem;">
+                        Gabes has lived under a toxic cloud for 50 years.
+                        <br><br>
+                        <span class="highlight">Phosphogypsum. Sulfur Dioxide. Ammonia.</span>
+                        <br><br>
+                        We know it's there. We can smell it. But we can't prove it.
+                    </p>
+                    <div class="glass-panel">
+                        <div class="big-stat">0</div>
+                        <p style="text-align: left; font-size: 1.4rem;">Publicly available air quality sensors in the
+                            industrial zone today.</p>
+                    </div>
+                </div>
+                <div class="quote-box">
+                    <p class="quote-text">"My son asks why the sky is yellow."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: BMC Problem/Solution -->
+        <div class="slide">
+            <h2>The 100M Person Problem</h2>
+            <div class="grid-4">
+                <div class="card">
+                    <span class="card-icon">❌</span>
+                    <h3>PROBLEM</h3>
+                    <p>Industrial zones across North Africa have zero public air monitoring infrastructure</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">✅</span>
+                    <h3>SOLUTION</h3>
+                    <p>Real-time air quality monitoring as a profitable service</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">💰</span>
+                    <h3>MARKET</h3>
+                    <p>Municipalities, factories, and citizens need environmental data</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🚀</span>
+                    <h3>OPPORTUNITY</h3>
+                    <p>100M+ people in North Africa without air quality infrastructure</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Customer Segments -->
+        <div class="slide">
+            <h2>Three Revenue Streams</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-icon">🏛️</span>
+                    <h3>B2G: Municipalities</h3>
+                    <p>15,000 TND/year for 50 sq km network. 60% cheaper than consultants with continuous monitoring.
+                    </p>
+                    <p class="highlight" style="margin-top: 1.5rem; font-size: 1.4rem;">Gabes verbally committed</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🏭</span>
+                    <h3>B2B: Industry</h3>
+                    <p>25,000 TND install + 5,000 TND/year. EU Carbon Border Adjustment compliance insurance.</p>
+                    <p class="highlight" style="margin-top: 1.5rem; font-size: 1.4rem;">2 warm leads at GCT & SIAPE</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🔬</span>
+                    <h3>Data Licensing</h3>
+                    <p>Anonymized datasets to researchers, NGOs, and government agencies.</p>
+                    <p class="highlight" style="margin-top: 1.5rem; font-size: 1.4rem;">TIS & GIZ existing customers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Dashboard Demo -->
+        <div class="slide">
+            <h2>Live Platform Demo</h2>
+            <p style="margin-bottom: 3rem; font-size: 1.7rem;">Real-time pollution tracking with Arabic-French SMS
+                alerts</p>
+
+            <div class="screenshot-container">
+                <div style="position: relative;">
+                    <img src="live_map_pollution_data.jpg" alt="Live Map">
+                    <p
+                        style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(0,0,0,0.8); padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 1rem;">
+                        Pollution Visualization</p>
+                </div>
+                <div style="position: relative;">
+                    <img src="live_dashboard.jpg" alt="Dashboard">
+                    <p
+                        style="position: absolute; bottom: 1rem; left: 1rem; background: rgba(0,0,0,0.8); padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 1rem;">
+                        Analytics Dashboard</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Financials -->
+        <div class="slide">
+            <h2>Unit Economics</h2>
+            <div class="grid-3">
+                <div class="metric-box">
+                    <div class="metric-value">55,000 TND</div>
+                    <div class="metric-label">Year 1 Revenue</div>
+                    <p style="font-size: 1rem; margin-top: 1rem; color: var(--text-muted);">1 municipal + 2 factory
+                        contracts</p>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">35,000 TND</div>
+                    <div class="metric-label">Year 1 Costs</div>
+                    <p style="font-size: 1rem; margin-top: 1rem; color: var(--text-muted);">Profitable by month 18</p>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">37:1</div>
+                    <div class="metric-label">LTV:CAC Ratio</div>
+                    <p style="font-size: 1rem; margin-top: 1rem; color: var(--text-muted);">75K LTV / 2K CAC</p>
+                </div>
+            </div>
+            <div class="glass-panel" style="margin-top: 3rem; max-width: 900px;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Cost Breakdown</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <p style="text-align: left; font-size: 1.2rem;">📡 50 Sensors: 10,000 TND</p>
+                        <p style="text-align: left; font-size: 1.2rem; margin-top: 1rem;">💻 Platform Dev: 18,000 TND
+                        </p>
+                    </div>
+                    <div>
+                        <p style="text-align: left; font-size: 1.2rem;">☁️ Operations: 6,000 TND</p>
+                        <p style="text-align: left; font-size: 1.2rem; margin-top: 1rem;">📢 Marketing: 1,000 TND</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Competitive Advantage -->
+        <div class="slide">
+            <h2>Why Not PurpleAir or IQAir?</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-icon">💵</span>
+                    <h3>Cost</h3>
+                    <p>$60 vs their $300. No subscription fees for citizens.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🌍</span>
+                    <h3>Localization</h3>
+                    <p>Arabic-French SMS alerts. Designed for North African industrial contexts.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🧪</span>
+                    <h3>Compounds</h3>
+                    <p>Track fluoride & phosphate dust—industrial pollutants consumer monitors ignore.</p>
+                </div>
+            </div>
+            <p style="margin-top: 3rem; font-size: 1.8rem; font-weight: 700;">We're serving the market they've
+                economically abandoned.</p>
+        </div>
+
+        <!-- Slide 8: Growth Strategy -->
+        <div class="slide">
+            <h2>3-Phase Regional Expansion</h2>
+            <div class="grid-3">
+                <div class="glass-panel">
+                    <div class="big-stat">1</div>
+                    <h3>Gabes Pilot</h3>
+                    <p>18 months. 50 sensors. Prove health correlation. Secure municipal contract.</p>
+                </div>
+                <div class="glass-panel" style="opacity: 0.85">
+                    <div class="big-stat">2</div>
+                    <h3>Sfax + Gafsa</h3>
+                    <p>35K seed round. Replicate "Community + Data" model in 2 industrial cities.</p>
+                </div>
+                <div class="glass-panel" style="opacity: 0.7">
+                    <div class="big-stat">3</div>
+                    <h3>MENA Region</h3>
+                    <p>Algeria, Libya, Morocco. 100M+ people in unmonitored pollution zones.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Team -->
+        <div class="slide">
+            <h2>Team & Advisors</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-icon">👨‍💻</div>
+                    <h3>Core Team</h3>
+                    <p>3 CS engineers specializing in IoT & data visualization</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon">🔬</div>
+                    <h3>Technical Advisor</h3>
+                    <p>Dr. Salah Hamdi, Gabes University Environmental Science</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon">⚖️</div>
+                    <h3>Regulatory Advisor</h3>
+                    <p>Former ANPE deputy director, drafted 2020 Environmental Code</p>
+                </div>
+            </div>
+            <p style="margin-top: 3rem; font-size: 1.6rem;">We build software. We partner for domain expertise.</p>
+        </div>
+
+        <!-- Slide 10: Value Proposition -->
+        <div class="slide">
+            <h1 style="font-size: 4rem; line-height: 1.3; max-width: 1000px;">Make Air Quality<br>Visible + Actionable
+            </h1>
+            <div class="grid-3" style="margin-top: 4rem;">
+                <div class="glass-panel" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🏛️</div>
+                    <p style="font-size: 1.4rem;"><strong>Municipalities:</strong> Better planning decisions</p>
+                </div>
+                <div class="glass-panel" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🏭</div>
+                    <p style="font-size: 1.4rem;"><strong>Factories:</strong> Prove compliance</p>
+                </div>
+                <div class="glass-panel" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">👨‍👩‍👧‍👦</div>
+                    <p style="font-size: 1.4rem;"><strong>Families:</strong> Protect their kids</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: The Ask -->
+        <div class="slide">
+            <h2>The Ask</h2>
+            <div class="grid-2">
+                <div>
+                    <p style="text-align: left; font-size: 2.2rem; margin-bottom: 2.5rem; font-weight: 700;">
+                        We are raising <span class="highlight" style="font-size: 2.8rem;">35,000 TND</span> to build the
+                        pilot network in Gabes.
+                    </p>
+                    <ul style="list-style: none; font-size: 1.7rem; color: var(--text-muted); line-height: 2.2;">
+                        <li>✅ 50 IoT Sensors</li>
+                        <li>✅ Cloud Infrastructure</li>
+                        <li>✅ Community Outreach</li>
+                        <li>✅ 18-month runway to profitability</li>
+                    </ul>
+                </div>
+                <div class="glass-panel" style="text-align: center; padding: 3rem;">
+                    <h3 style="margin-bottom: 2rem;">Join Us</h3>
+                    <img src="nafas_logo.png" alt="Nafas" style="height: 100px; margin: 2rem 0;">
+                    <p style="text-align: center; font-size: 1.3rem; margin-top: 2rem;">contact@nafas.tn</p>
+                    <p style="text-align: center; font-size: 1.3rem;">www.nafas.tn</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Closing -->
+        <div class="slide">
+            <img src="nafas_logo.png" alt="Nafas" class="logo-img" style="height: 180px;">
+            <h1 style="font-size: 5.5rem;">NAFAS</h1>
+            <p style="font-size: 2rem; margin: 2rem 0; max-width: 1000px;">
+                For 50 years, Gabes has breathed toxic air in silence.
+            </p>
+            <p style="font-size: 2rem; margin-bottom: 3rem; max-width: 1000px;">
+                <span class="highlight">Nafas breaks the silence.</span>
+            </p>
+            <div class="closing-tagline">
+                Profitable Transparency.<br>Regional Impact.
+            </div>
+            <p style="margin-top: 3rem; font-size: 2rem; font-weight: 700; color: var(--accent);">Team Sabkha</p>
+        </div>
+
+        <!-- Slide 13: Questions -->
+        <div class="slide">
+            <h1 style="font-size: 8rem;">Questions?</h1>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="prevSlide()">← Previous</button>
+        <button class="btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progress = document.getElementById('progress');
+        const slideNumber = document.getElementById('slide-number');
+        const totalSlides = slides.length;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            progress.style.width = ((currentSlide + 1) / totalSlides) * 100 + '%';
+            slideNumber.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlides();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlides();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                nextSlide();
+            }
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        updateSlides();
+    </script>
+</body>
+
+</html>
