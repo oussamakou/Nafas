@@ -7,7 +7,7 @@ const Slide05_Salsabil = () => {
         }}>
             <h2>Salsabil's Story</h2>
             <div style={{ maxWidth: '900px', textAlign: 'center' }}>
-                <p style={{ fontSize: '2rem', marginBottom: '2rem' }}>Three years ago, my sister Salsabil came to university here.</p>
+                <p style={{ fontSize: '2rem', marginBottom: '2rem' }}>Three years ago, my sister Salsabil went to study at the University of Gabes.</p>
                 <p style={{ fontSize: '2rem', marginBottom: '2rem' }}>Within a year, she developed chronic respiratory illness. She was 21.</p>
                 <div className="glass-panel" style={{ marginTop: '3rem' }}>
                     <p style={{ fontSize: '1.8rem', color: 'var(--red)' }}>Doctors couldn't prove the cause.</p>

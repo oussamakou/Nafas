@@ -27,7 +27,7 @@ const Slide02_Team = () => {
                     padding: '2rem'
                 }}>
                     <h3 style={{ margin: 0, fontSize: '2.5rem' }}>Oussama & Aziz</h3>
-                    <p style={{ margin: 0, textAlign: 'left', color: 'var(--accent)' }}>Co-Founders</p>
+                    <p style={{ margin: 0, textAlign: 'left', color: 'var(--accent)' }}>Co-Founders of Team SABKHA</p>
                 </div>
             </div>
         </div>

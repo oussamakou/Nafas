@@ -4,29 +4,42 @@ const Slide11_Financials = () => {
     return (
         <div className="slide active">
             <h2>The Ask: 1,000 TND</h2>
-            <p style={{ marginBottom: '2rem', fontSize: '1.8rem' }}>To launch the <strong>Micro-Pilot</strong> in Gabes.</p>
-            <div className="split-layout">
-                <div>
-                    <h3 style={{ color: 'var(--accent)', marginBottom: '1.5rem' }}>Pilot Economics</h3>
-                    <div className="glass-panel" style={{ textAlign: 'left' }}>
-                        <p style={{ marginBottom: '1rem', fontSize: '1.4rem' }}>📉 <strong>Investment:</strong> 1,000 TND</p>
-                        <p style={{ marginBottom: '1rem', fontSize: '1.4rem' }}>🎯 <strong>Target:</strong> 1 Municipal Contract</p>
-                        <p style={{ marginBottom: '1rem', fontSize: '1.4rem' }}>💰 <strong>Value:</strong> 15,000 TND / Year</p>
+            <p style={{ fontSize: '1.5rem', marginBottom: '2rem', color: 'var(--text-muted)' }}>
+                To launch our pilot in Gabes and validate the model.
+            </p>
+
+            <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', alignItems: 'stretch' }}>
+                {/* Use of Funds */}
+                <div className="glass-panel" style={{ flex: 1, textAlign: 'left' }}>
+                    <h3 style={{ marginBottom: '1.5rem', borderBottom: '1px solid var(--glass-border)', paddingBottom: '0.5rem' }}>Use of Funds</h3>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', fontSize: '1.2rem' }}>
+                        <span>📡 7 Additional Sensors</span>
+                        <span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>400 TND</span>
                     </div>
-                    <p className="highlight" style={{ marginTop: '1.5rem', fontSize: '1.4rem' }}>15x ROI in Year 1</p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', fontSize: '1.2rem' }}>
+                        <span>🌐 LoRaWAN Gateway</span>
+                        <span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>300 TND</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', fontSize: '1.2rem' }}>
+                        <span>☁️ Server & SMS Costs (6mo)</span>
+                        <span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>200 TND</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', fontSize: '1.2rem' }}>
+                        <span>🤝 Municipal Outreach</span>
+                        <span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>100 TND</span>
+                    </div>
                 </div>
-                <div>
-                    <h3 style={{ color: 'var(--green)', marginBottom: '1.5rem' }}>Unit Economics</h3>
-                    <div className="metric-box" style={{ marginBottom: '1rem' }}>
-                        <div className="metric-value">300 TND</div>
-                        <div className="metric-label">CAC (Partner-Led Sales)</div>
-                    </div>
-                    <div className="metric-box" style={{ marginBottom: '1rem' }}>
-                        <div className="metric-value">45,000 TND</div>
-                        <div className="metric-label">LTV (3-Year Contract)</div>
-                    </div>
-                    <div className="big-stat">150:1</div>
-                    <p style={{ fontSize: '1rem', color: 'var(--text-muted)' }}>High ratio due to near-zero CAC via NGO partners.</p>
+
+                {/* ROI */}
+                <div className="glass-panel" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', background: 'rgba(0, 255, 157, 0.05)', border: '2px solid var(--green)' }}>
+                    <h3 style={{ color: 'var(--green)', marginBottom: '0.5rem' }}>Projected ROI</h3>
+                    <div style={{ fontSize: '5rem', fontWeight: 'bold', color: 'var(--green)', lineHeight: 1 }}>15x</div>
+                    <p style={{ fontSize: '1.2rem', marginTop: '1rem', textAlign: 'center' }}>
+                        1 Municipal Contract = <strong>15,000 TND/yr</strong>
+                    </p>
+                    <p style={{ fontSize: '1rem', marginTop: '0.5rem', color: 'var(--text-muted)' }}>
+                        Breakeven in Month 1 of contract
+                    </p>
                 </div>
             </div>
         </div>

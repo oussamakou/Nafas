@@ -7,8 +7,7 @@ const Slide17_Questions = () => {
 
             <div style={{
                 background: 'white',
-                width: '220px',
-                height: '220px',
+                padding: '1rem',
                 borderRadius: '1.5rem',
                 display: 'flex',
                 flexDirection: 'column',
@@ -16,20 +15,23 @@ const Slide17_Questions = () => {
                 justifyContent: 'center',
                 boxShadow: '0 0 50px var(--accent-glow)'
             }}>
-                <div style={{
-                    width: '180px',
-                    height: '180px',
-                    background: '#000',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '0.8rem'
-                }}>
-                    [QR CODE HERE]
-                </div>
+                <img
+                    src="/nafas_qr.png"
+                    alt="Scan for Live Demo"
+                    style={{ width: '200px', height: '200px', objectFit: 'contain' }}
+                />
                 <p style={{ color: 'black', fontSize: '1.2rem', marginTop: '0.5rem', fontWeight: 'bold' }}>Live Demo</p>
             </div>
+
+            {/* Background Audio */}
+            <audio autoPlay loop style={{ display: 'none' }} ref={(audio) => {
+                if (audio) {
+                    audio.volume = 0.003; // Low volume
+                    audio.currentTime = 34; // Start at 34s
+                }
+            }}>
+                <source src="/nafas_song.mp3" type="audio/mpeg" />
+            </audio>
         </div>
     );
 };

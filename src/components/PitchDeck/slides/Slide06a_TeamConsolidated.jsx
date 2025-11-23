@@ -29,10 +29,7 @@ const Slide06a_TeamConsolidated = () => {
                 }}>
                     <h3 style={{ margin: 0, fontSize: '2.5rem' }}>Oussama & Aziz</h3>
                     <p style={{ margin: 0, textAlign: 'left', color: 'var(--accent)', fontSize: '1.5rem' }}>
-                        Co-Founders
-                    </p>
-                    <p style={{ margin: '0.5rem 0 0 0', textAlign: 'left', fontSize: '1.2rem' }}>
-                        CS Engineers from Gabes
+                        Co-Founders of Team SABKHA
                     </p>
                 </div>
             </div>
